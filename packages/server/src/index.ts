@@ -1,6 +1,6 @@
+import "dotenv/config";
 import api from "@/api";
 import { useIo } from "@/io";
-import "dotenv/config";
 import { createServer, type Server as HttpServer } from "http";
 
 const PORT: number = parseInt(process.env.PORT!);
