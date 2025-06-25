@@ -8,7 +8,8 @@
     "db:migrate": "pnpm --filter server run db:migrate",
     "db:push": "pnpm --filter server run db:push",
     "server:add": "pnpm --filter server add",
-    "server:dev": "pnpm --filter server dev",
+    "server:build": "pnpm --filter server run build",
+    "server:dev": "pnpm --filter server run dev",
     "shared:add": "pnpm --filter shared add"
   },
   "keywords": [],
