@@ -1,7 +1,26 @@
 import database from "@/modules/database";
 import { type Role } from "@/modules/database/schema/roles";
 import { users, type User } from "@/modules/database/schema/users";
+import { generatePublicId } from "@/modules/helper";
 import { eq } from "drizzle-orm";
+
+export const addUser = async (
+  username: string,
+  email: string,
+  passwordHash: string
+): Promise<User | undefined> => {
+  const user: User | undefined = await database
+    .insert(users)
+    .values({
+      publicId: generatePublicId(),
+      username,
+      email,
+      password: passwordHash,
+    })
+    .returning()
+    .then((rows) => rows[0]);
+  return user;
+};
 
 export const getUserByEmail = async (
   email: string
