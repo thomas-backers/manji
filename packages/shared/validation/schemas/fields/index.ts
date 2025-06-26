@@ -11,7 +11,7 @@ export const username = z
   .max(30, "Must be at most 30 characters long");
 
 export const email = z
-  .email("Must be an e-mail")
+  .email("Must be a valid e-mail")
   .min(6, "Must be at least 6 characters long")
   .max(320, "Must be at most 320 characters long");
 

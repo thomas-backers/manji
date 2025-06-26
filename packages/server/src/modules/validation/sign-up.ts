@@ -4,7 +4,7 @@ import {
   getUserByUsername,
 } from "@/modules/database/tables/users";
 import { z } from "shared/validation";
-import { signUpFormSchema as SchemaBase } from "shared/validation/schemas/sign-up-form";
+import { signUpFormSchema as SchemaBase } from "shared/validation/schemas/sign-up";
 
 export const signUpFormSchema = SchemaBase.refine(
   async ({ username }) => {
