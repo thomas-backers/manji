@@ -7,7 +7,7 @@ import logger from "@/modules/logging";
 import { SignUpForm } from "@/modules/validation/sign-up";
 import bcrypt from "bcryptjs";
 import type { Request, Response } from "express";
-import { ApiData } from "shared/types";
+import { ApiMessage } from "shared/types";
 
 const post = async (req: Request, res: Response): Promise<void> => {
   const { username, email, password }: SignUpForm = req.body;
@@ -18,12 +18,11 @@ const post = async (req: Request, res: Response): Promise<void> => {
     passwordHash
   );
   if (user === undefined) {
-    logger.warn(`SQL insert seemed to fail for user ${username}`);
-    return internalServerError(res);
+    throw Error(`SQL insert seemed to fail for user ${username}`);
   }
   logger.info(`User ${user.publicId} created successfully`);
   await sendVerificationMail(user.email, user.publicId);
-  return ok<ApiData>(res, {
+  return ok<ApiMessage>(res, {
     message:
       "User created successfully, please check your email to verify your account",
   });

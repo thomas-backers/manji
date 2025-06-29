@@ -1,4 +1,4 @@
-export interface ApiData {
+export interface ApiMessage {
   message: string;
 }
 
@@ -7,7 +7,7 @@ export interface ApiError {
   message: string;
 }
 
-export interface ApiSuccess<Data extends ApiData> {
+export interface ApiSuccess<Data extends ApiMessage> {
   success: true;
   data: Data;
 }
@@ -17,7 +17,7 @@ export interface ApiFailure {
   errors: ApiError[];
 }
 
-export type ApiResponse<Data extends ApiData> = {
+export type ApiResponse<Data extends ApiMessage> = {
   success: boolean;
   data?: Data;
   errors?: ApiError[];
