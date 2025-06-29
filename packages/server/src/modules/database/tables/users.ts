@@ -4,7 +4,7 @@ import { users, type User } from "@/modules/database/schema/users";
 import { generatePublicId } from "@/modules/helper";
 import { eq } from "drizzle-orm";
 
-export const addUser = async (
+export const createUser = async (
   username: string,
   email: string,
   passwordHash: string
