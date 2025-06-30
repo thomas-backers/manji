@@ -1,7 +1,6 @@
 import { User } from "@/modules/database/schema/users";
 import { createUser } from "@/modules/database/tables/users";
 import { sendVerificationMail } from "@/modules/email";
-import { internalServerError } from "@/modules/helper/status/error/server";
 import { ok } from "@/modules/helper/status/success";
 import logger from "@/modules/logging";
 import { SignUpForm } from "@/modules/validation/sign-up";
