@@ -3,19 +3,29 @@ import {
   type SignUpForm,
   signUpFormSchema,
 } from "shared/validation/schemas/sign-up";
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 
-const form: SignUpForm = reactive({
+const form = reactive<SignUpForm>({
   username: "",
   email: "",
   password: "",
   passwordConfirmation: "",
 });
 
-const onSubmit = () => {
-  const { success, data, error } = signUpFormSchema.safeParse(form);
+const errors = ref<Partial<Record<keyof SignUpForm, string[]>>>({});
+
+const onSubmit = async () => {
+  const { success, data, error } = await signUpFormSchema.safeParseAsync(form);
+  errors.value = {};
   if (!success) {
-    console.error("Validation failed:", error);
+    for (const issue of error.issues) {
+      const field = issue.path[0] as keyof SignUpForm;
+      if (!errors.value[field]) {
+        errors.value[field] = [];
+      }
+      errors.value[field].push(issue.message);
+    }
+    console.error("Validation errors:", errors.value);
     return;
   }
   console.log("Form submitted successfully:", data);
@@ -25,13 +35,7 @@ const onSubmit = () => {
 <template>
   <form @submit.prevent="onSubmit">
     <input v-model="form.username" type="text" name="username" placeholder="" />
-    <input
-      v-model="form.email"
-      type="email"
-      name="email"
-      id="email"
-      placeholder=""
-    />
+    <input v-model="form.email" type="email" name="email" placeholder="" />
     <input
       v-model="form.password"
       type="password"
