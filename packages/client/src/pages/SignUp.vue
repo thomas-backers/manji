@@ -14,7 +14,7 @@ const form = reactive<SignUpForm>({
 
 const errors = ref<Partial<Record<keyof SignUpForm, string[]>>>({});
 
-const onSubmit = async () => {
+const onSubmit = async (): Promise<void> => {
   const { success, data, error } = await signUpFormSchema.safeParseAsync(form);
   errors.value = {};
   if (!success) {
