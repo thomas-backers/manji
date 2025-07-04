@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import Form from "@/components/Form.vue";
+import FormInput from "@/components/FormInput.vue";
 import {
   type SignUpForm,
   signUpFormSchema,
@@ -25,7 +27,6 @@ const onSubmit = async (): Promise<void> => {
       }
       errors.value[field].push(issue.message);
     }
-    console.error("Validation errors:", errors.value);
     return;
   }
   console.log("Form submitted successfully:", data);
@@ -33,21 +34,43 @@ const onSubmit = async (): Promise<void> => {
 </script>
 
 <template>
-  <form @submit.prevent="onSubmit">
-    <input v-model="form.username" type="text" name="username" placeholder="" />
-    <input v-model="form.email" type="email" name="email" placeholder="" />
-    <input
-      v-model="form.password"
-      type="password"
-      name="password"
-      placeholder=""
-    />
-    <input
-      v-model="form.passwordConfirmation"
-      type="password"
-      name="passwordConfirmation"
-      placeholder=""
-    />
-    <button type="submit">sign up</button>
-  </form>
+  <Form @submit="onSubmit">
+    <template v-slot:inputs>
+      <FormInput
+        v-model="form.username"
+        :errors="errors.username"
+        label="Username:"
+        name="username"
+        placeholder="Type your username"
+        type="text"
+      />
+      <FormInput
+        v-model="form.email"
+        :errors="errors.email"
+        label="Email:"
+        name="email"
+        placeholder="Type your email"
+        type="email"
+      />
+      <FormInput
+        v-model="form.password"
+        :errors="errors.password"
+        label="Password:"
+        name="password"
+        placeholder="Type your password"
+        type="password"
+      />
+      <FormInput
+        v-model="form.passwordConfirmation"
+        :errors="errors.passwordConfirmation"
+        label="Password confirmation:"
+        name="passwordConfirmation"
+        placeholder="Confirm your password"
+        type="password"
+      />
+    </template>
+    <template v-slot:buttons>
+      <button class="w-full" type="submit">sign up</button>
+    </template>
+  </Form>
 </template>
