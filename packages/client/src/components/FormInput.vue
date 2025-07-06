@@ -23,7 +23,7 @@ const {
 
 const emit = defineEmits<FormInputEmits>();
 
-const onInput = async ({ target }: Event): Promise<void> => {
+const onInput = ({ target }: Event): void => {
   const { value } = target as HTMLInputElement;
   emit("update:modelValue", value.trim());
 };

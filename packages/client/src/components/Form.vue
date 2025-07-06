@@ -5,14 +5,13 @@ interface FormEmits {
 
 const emit = defineEmits<FormEmits>();
 
-const onSubmit = async (): Promise<void> => {
+const onSubmit = (): void => {
   emit("submit");
 };
 </script>
 
 <template>
   <form class="w-full" @submit.prevent="onSubmit">
-    <slot name="inputs"></slot>
-    <slot name="buttons"></slot>
+    <slot></slot>
   </form>
 </template>
