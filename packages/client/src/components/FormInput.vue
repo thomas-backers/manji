@@ -25,7 +25,7 @@ const emit = defineEmits<FormInputEmits>();
 
 const onInput = ({ target }: Event): void => {
   const { value } = target as HTMLInputElement;
-  emit("update:modelValue", value.trim());
+  emit("update:modelValue", value);
 };
 </script>
 
@@ -34,7 +34,7 @@ const onInput = ({ target }: Event): void => {
     <label class="w-full" :for="name">
       {{ label }}
       <input
-        class="w-full"
+        class="w-full border p-1"
         :id="name"
         :name="name"
         :placeholder="placeholder"
