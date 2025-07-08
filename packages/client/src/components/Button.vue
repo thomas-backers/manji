@@ -21,15 +21,17 @@ const onClick = (): void => {
 </script>
 
 <template>
-  <button
-    class="flex w-full bg-black text-white cursor-pointer disabled:cursor-default"
-    :disabled="disabled || loading"
-    :type="type"
-    @click="onClick"
-  >
-    <span class="mx-auto">
-      <Spinner v-if="loading" />
-      <slot v-else></slot>
-    </span>
-  </button>
+  <div class="w-full p-1">
+    <button
+      class="flex w-full py-1.5 bg-slate-950 text-slate-50 font-semibold tracking-wider cursor-pointer uppercase disabled:cursor-default dark:bg-slate-100 dark:text-slate-950"
+      :disabled="disabled || loading"
+      :type="type"
+      @click="onClick"
+    >
+      <span class="mx-auto">
+        <Spinner v-if="loading" />
+        <slot v-else></slot>
+      </span>
+    </button>
+  </div>
 </template>

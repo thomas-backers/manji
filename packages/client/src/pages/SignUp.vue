@@ -68,6 +68,6 @@ const onSubmit = async (): Promise<void> => {
       placeholder="Confirm your password"
       type="password"
     />
-    <Button type="submit">sign in</Button>
+    <Button type="submit">sign up</Button>
   </Form>
 </template>
