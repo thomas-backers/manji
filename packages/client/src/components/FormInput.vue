@@ -34,7 +34,7 @@ const onInput = ({ target }: Event): void => {
     <label class="w-full" :for="name">
       {{ label }}
       <input
-        class="w-full border border-slate-950 p-1 font-light bg-slate-100 placeholder:text-slate-400 dark:border-slate-700 dark:bg-slate-900 dark:placeholder:text-slate-500"
+        class="w-full border border-slate-800 rounded p-1.5 font-light bg-slate-100 placeholder:text-slate-400 dark:border-slate-700 dark:bg-slate-900 dark:placeholder:text-slate-500"
         :id="name"
         :name="name"
         :placeholder="placeholder"
