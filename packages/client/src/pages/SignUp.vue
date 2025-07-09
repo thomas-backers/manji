@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Button from "@/components/Button.vue";
-import DarkMode from "@/components/DarkMode.vue";
+import ToggleDarkMode from "@/components/ToggleDarkMode.vue";
 import Form from "@/components/Form.vue";
 import FormInput from "@/components/FormInput.vue";
 import {
@@ -36,7 +36,7 @@ const onSubmit = async (): Promise<void> => {
 </script>
 
 <template>
-  <DarkMode />
+  <ToggleDarkMode />
   <Form @submit="onSubmit">
     <FormInput
       v-model="form.username"
